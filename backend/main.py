@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def practice():
-    action = request.args.get("action", "play")
-    return f"Let's {escape(action)}!"
+    name = request.args.get("name", "go")
+    return f"Let's {escape(name)}!"
 
 
 def main():
