@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv["DATABASE_URL"]
 
 db = SQLAlchemy(app)
 
-class TicTacToe(db.Model):
+class Games(db.Model):
     __tablename__ = "Games"
 
     game_id = db.Column(db.Integer, primary_key=True)
