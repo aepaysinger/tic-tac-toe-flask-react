@@ -1,0 +1,14 @@
+# Tic Tac Toe Flask React
+## How the game was created:
+* Created 2 seperate files (backend and frontend)
+* in the back end there is a virtual environment as well as a requirements file
+### Building the database in the backend:
+* logged into pgAdmin and created the database.
+* created a .env for the database url
+* added to the requirements : alembic, python-dotenv, flask-cors, flask-Migrate, flask-SQLAlchemy, 
+* models.py - contains the set up for the tables in the database.
+* main.py - contains the location of the database and set up for db and migrations.
+* app.py - containes the routes. 
+* ran: alimbic init migrations - this created the migrations and versions direcotry, env.py, script.py.mako
+* ran: flask db migrate
+* ran flask --app app run --debug

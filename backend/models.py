@@ -1,1 +1,10 @@
-from backend.app import db
+from main import db
+
+
+class Game(db.Model):
+    __tablename__ = "games"
+
+    game_id = db.Column(db.Integer, primary_key=True)
+    whos_turn = db.Column(db.String(1), unique=False, nullable=False)
+    board = db.Column(db.String(), unique=False, nullable=False)
+    winner = db.Column(db.String(), unique=False, nullable=False)
