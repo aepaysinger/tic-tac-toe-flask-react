@@ -17,7 +17,6 @@ class Game(db.Model):
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
-    __table_args__ = (db.UniqueConstraint('email'),)
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
