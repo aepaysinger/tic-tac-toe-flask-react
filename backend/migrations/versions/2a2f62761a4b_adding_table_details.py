@@ -22,9 +22,9 @@ def upgrade() -> None:
     op.create_table('details',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('info', sa.String(), nullable=False),
-    sa.Column('user_email', sa.String(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
-    sa.ForeignKeyConstraint(('user_email',), ['users.email'])
+    sa.ForeignKeyConstraint(('user_id',), ['users.id'])
     )
 
 def downgrade() -> None:

@@ -32,4 +32,5 @@ class Detail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     info = db.Column(db.String())
 
-    user_email = db.Column(db.String(100), db.ForeignKey('users.email'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+
