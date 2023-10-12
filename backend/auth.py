@@ -1,6 +1,6 @@
 from flask import request, Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import Game, User
+from models import Game, User, Detail
 from flask_login import login_user, login_required, logout_user
 from db import db
 
@@ -59,3 +59,10 @@ def signup_post():
 def logout():
     logout_user()
     return redirect(url_for("main.index"))
+
+
+@auth.route("/details", methods=['POST'])
+def add_details():
+    id = db.session.query(Detail).filter(Detail.user_id == 1).one()
+    data = request.json
+    return data['info']

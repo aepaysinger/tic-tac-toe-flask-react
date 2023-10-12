@@ -1,11 +1,8 @@
 from flask_login import UserMixin
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+
 
 from db import db
 
-
-Base = declarative_base()
 
 class Game(db.Model):
     __tablename__ = "games"
@@ -30,8 +27,8 @@ class Detail(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     info = db.Column(db.String())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = relationship("User", back_populates = "details")
+    user = db.relationship("User", back_populates = "details")
 
 
-User.details = relationship("Detail", order_by = Detail.id, back_populates = "user")
+User.details = db.relationship("Detail", order_by = Detail.id, back_populates = "user")
 
