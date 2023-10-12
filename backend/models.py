@@ -2,7 +2,6 @@ from flask_login import UserMixin
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
-
 from db import db
 
 
@@ -25,8 +24,6 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
 
-
-
 class Detail(db.Model):
     __tablename__ = "details"
 
@@ -37,5 +34,4 @@ class Detail(db.Model):
 
 
 User.details = relationship("Detail", order_by = Detail.id, back_populates = "user")
-
 
