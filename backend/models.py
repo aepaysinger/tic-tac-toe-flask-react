@@ -1,8 +1,7 @@
-# from app import db
-from flask_sqlalchemy import SQLAlchemy
+from flask_login import UserMixin
+from db import db
 
 
-db = SQLAlchemy()
 class Game(db.Model):
     __tablename__ = "games"
 
@@ -10,3 +9,12 @@ class Game(db.Model):
     whos_turn = db.Column(db.String(1), unique=False, nullable=False)
     board = db.Column(db.String(), unique=False, nullable=False)
     winner = db.Column(db.String(), unique=False, nullable=False)
+
+
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(100))
+    name = db.Column(db.String(1000))
