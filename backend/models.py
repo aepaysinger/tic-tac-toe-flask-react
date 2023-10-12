@@ -1,4 +1,8 @@
 from flask_login import UserMixin
+from sqlalchemy.orm import relationship
+from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy.sql.schema import Column
+from flask_sqlalchemy import SQLAlchemy
 from db import db
 
 
@@ -13,8 +17,19 @@ class Game(db.Model):
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
+    __table_args__ = (db.UniqueConstraint('email'),)
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
+
+
+
+class Detail(db.Model):
+    __tablename__ = "details"
+
+    id = db.Column(db.Integer, primary_key=True)
+    info = db.Column(db.String())
+
+    user_email = db.Column(db.String(100), db.ForeignKey('users.email'), nullable=False)
