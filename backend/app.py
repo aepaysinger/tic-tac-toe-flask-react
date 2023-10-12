@@ -5,8 +5,6 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from db import db
 from flask import Flask
-
-# from app import auth as venv_blueprint
 from main_bp import main as main_blueprint
 from auth import auth as auth_blueprint
 from flask_login import LoginManager

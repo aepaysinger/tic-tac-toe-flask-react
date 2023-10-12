@@ -4,16 +4,6 @@ from models import Game, User
 from flask_login import login_user, login_required, logout_user
 from db import db
 
-# from app import app
-
-
-# @app.route("/")
-# def practice():
-#     name = request.args.get("name", "go")
-#     game = Game(whos_turn="x", board="a,b,c", winner="o")
-
-#     return f"Let's {escape(name)}!"
-
 
 auth = Blueprint("auth", __name__)
 
@@ -25,7 +15,6 @@ def login():
 
 @auth.route("/login", methods=["POST"])
 def login_post():
-    # login code goes here
     email = request.form.get("email")
     password = request.form.get("password")
     remember = True if request.form.get("remember") else False
