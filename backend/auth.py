@@ -63,40 +63,11 @@ def logout():
 
 
 @auth.route("/details", methods=['POST'])
-def add_details():
+def user():
     data = request.json
-    user = User.query.get_or_404(1)
-    information = data['info']
-    detail = Detail(info=information, user_id=user) 
+    user = User.query.get_or_404(data["user_id"])
+    detail = Detail(info=data['info'], user=user)
     db.session.add(detail)
     db.session.commit()
-
-    return redirect(url_for("main.profile"))
-
-
-@auth.route("/display")
-def display():
-    users = User.query.all()
-    return render_template('user.html', users=users)
-
-
-# @auth.route("/<int:user_id>", methods=('GET', 'POST'))
-# def user(user_id):
-#     user = User.query.get_or_404(user_id)
-#     if request.method == 'POST':
-#         detail = Detail(info=request.form['content'], user=user)
-#         db.session.add(detail)
-#         db.session.commit()
-#         return redirect(url_for('auth.user', user_id=user.id))
-#     return render_template('users.html', user=user)
-    
-@auth.route("/<int:user_id>", methods=('GET', 'POST'))
-def user(user_id):
-    user = User.query.get_or_404(user_id)
-    if request.method == 'POST':
-        detail = Detail(info=request.form['content'], user=user)
-        db.session.add(detail)
-        db.session.commit()
-        return redirect(url_for('auth.user', user_id=user.id))
-    return render_template('profile.html', user=user)
-
+    return "okay", 200
+  
