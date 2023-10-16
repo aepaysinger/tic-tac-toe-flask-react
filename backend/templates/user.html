@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <span class="title"><h1>{% block title %} USER {% endblock %}</h1></span>
+    <div class="content">
+        {% for user in users %}
+            <div class="user">
+                <p><b>#{{ user.id }}</b></p>
+                <b>
+                    <p class="name">
+                        <a href="{{ url_for('auth.user', user_id=user.id) }}">
+                            {{ user.name }}
+                        </a>
+                    </p>
+                </b>
+                <div class="info">
+                    <p>{{ user.info }}</p>
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

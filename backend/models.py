@@ -20,15 +20,16 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
+    info = db.Column(db.Text)
+    details = db.relationship('Detail', backref='user')
 
 class Detail(db.Model):
     __tablename__ = "details"
 
     id = db.Column(db.Integer, primary_key=True)
-    info = db.Column(db.String())
+    info = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship("User", back_populates = "details")
+    
 
 
-User.details = db.relationship("Detail", order_by = Detail.id, back_populates = "user")
 
