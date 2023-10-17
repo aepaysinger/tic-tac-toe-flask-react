@@ -2,15 +2,13 @@
 
 {% block content %}
 
-<span class="title"><h1>{% block title %} {{ user.name }}  {% endblock %}</h1></span>
+<span class="title"><h1>{% block title %} Welcome {{ user.name }}!!! {% endblock %}</h1></span>
 <div class="content">
         <div class="post">
-            <h3>details</h3>
             <form method="post">
             </form>
             {% for detail in user.details %}
                 <div class="detail">
-                    <p>#{{ detail.id }}</p>
                     <p>{{ detail.info }}</p>
                 </div>
             {% endfor %}
