@@ -20,7 +20,6 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-    info = db.Column(db.Text)
     details = db.relationship('Detail', backref='user')
 
 class Detail(db.Model):

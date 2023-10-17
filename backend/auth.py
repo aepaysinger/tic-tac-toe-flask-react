@@ -1,9 +1,10 @@
-from flask import request, Blueprint, render_template, redirect, url_for, request, flash
-from werkzeug.security import generate_password_hash, check_password_hash
-from models import Game, User, Detail
-from flask_login import login_user, login_required, logout_user
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask_login import login_required, login_user, logout_user
 
 from db import db
+from models import Detail, User
 
 
 auth = Blueprint("auth", __name__)
@@ -62,12 +63,11 @@ def logout():
     return redirect(url_for("main.index"))
 
 
-@auth.route("/details", methods=['POST'])
-def user():
+@auth.route("/details", methods=["POST"])
+def get_details():
     data = request.json
     user = User.query.get_or_404(data["user_id"])
-    detail = Detail(info=data['info'], user=user)
+    detail = Detail(info=data["info"], user=user)
     db.session.add(detail)
     db.session.commit()
     return "okay", 200
-  
