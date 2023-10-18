@@ -1,4 +1,6 @@
 from flask_login import UserMixin
+
+
 from db import db
 
 
@@ -18,3 +20,15 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
+    details = db.relationship('Detail', backref='user')
+
+class Detail(db.Model):
+    __tablename__ = "details"
+
+    id = db.Column(db.Integer, primary_key=True)
+    info = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    
+
+
+
