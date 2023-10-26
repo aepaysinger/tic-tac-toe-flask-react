@@ -56,7 +56,7 @@ def create_token():
     if not user or not check_password_hash(user.password, password):
         return {"msg": "Please check your login details and try again."}, 401
     access_token = create_access_token(identity=email)
-    response = {"access_login":access_token}
+    response = {"access_token":access_token}
     return response
 
 # old sign up
@@ -99,3 +99,14 @@ def get_details():
     db.session.add(detail)
     db.session.commit()
     return "okay", 200
+
+
+@auth.route('/profile', methods=['GET'])
+@jwt_required()
+def my_profile():
+    response_body = {
+        "name": "Nagato",
+        "about" :"Hello! I'm a full stack developer that loves python and javascript"
+    }
+    
+    return response_body
